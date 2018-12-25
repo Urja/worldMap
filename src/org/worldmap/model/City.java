@@ -1,0 +1,39 @@
+package org.worldmap.model;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "city")
+public class City {
+	private String name;
+	private String word;
+	private String translation;
+	private String successMessage;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getWord() {
+		return word;
+	}
+	public void setWord(String word) {
+		this.word = word;
+	}
+	public String getTranslation() {
+		return translation;
+	}
+	public void setTranslation(String translation) {
+		this.translation = translation;
+	}
+	public String getSuccessMessage() {
+		return successMessage;
+	}
+	public void setSuccessMessage(String successMessage) {
+		this.successMessage = successMessage;
+	}
+	
+	
+}
