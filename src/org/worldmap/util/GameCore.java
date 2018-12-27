@@ -1,4 +1,4 @@
-package org.worldmap.util;
+/*package org.worldmap.util;
 
 import java.util.Optional;
 
@@ -44,7 +44,7 @@ public class GameCore {
 									user.setCurrentBattleCountry(gameData.getGameData().get(j+1).getName());
 									user.setLastConqueredCity(user.getCurrentCity()); 
 									user.setCurrentCity(gameData.getGameData().get(j+1).getCities().get(0).getName());
-									System.out.print("\nYour current battle country:"+user.getCurrentBattleCountry() +"\nLanguage: " + gameData.getGameData().get(j+1).getLanguage());
+									System.out.println("\nYour current battle country:"+user.getCurrentBattleCountry() +"\nLanguage: " + gameData.getGameData().get(j+1).getLanguage());
 									userService.updateUser(user);
 									return gameData.getGameData().get(j+1).getCities().get(0);
 								}
@@ -55,7 +55,6 @@ public class GameCore {
 									user.setCurrentCity("none");
 									user.setWonWorldMap(true);
 									userService.updateUser(user);
-									break;
 								}
 							}
 						}
@@ -63,11 +62,12 @@ public class GameCore {
 				}
 			}
 		}
-		/*Optional<Country> country = getCurrentQuestionsForUser(user);
+		Optional<Country> country = getCurrentQuestionsForUser(user);
 		Optional<City> city  = country.get().getCities().stream().filter(cityElement -> user.getCurrentCity().equals(cityElement.getName())).findFirst();
 	
-		*/
+		
 		return null;
 		
 	}
 }
+*/

@@ -11,18 +11,21 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.worldmap.model.GameData;
 import org.worldmap.model.User;
 import org.worldmap.model.Users;
 import org.worldmap.service.UserService;
+import org.worldmap.util.UserInputUtils;
 
 public class UserServiceImpl implements UserService {
 
 	File file = new File("users.xml");
 	Properties properties = new Properties();
-	
+	 UserInputUtils userInputUtils = new UserInputUtils();
+	 
 	@Override
-	public User createUser(String name) throws JAXBException {
-		User user = new User(name);
+	public User createUser(String name, GameData gameData) throws JAXBException {
+		User user = new User(name, gameData);
 		try {
 
 			JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
@@ -39,7 +42,7 @@ public class UserServiceImpl implements UserService {
 				userList.add(user);
 				users.setUsers(userList);
 			}
-			writeUserXml(users);
+			writeUsers(users);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -48,10 +51,35 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	
 	@Override
-	public void updateUser(User user) throws JAXBException {
+	public User getOrCreateUser(String name, GameData gameData) throws JAXBException {
+		Users users = readUsers();
+		if (users != null) {
+			Optional<User> user = users.getUsers().stream().filter(x -> name.equals(x.getName())).findAny();
+			if (user.isPresent()) {
+				return user.get();
+			} else {
+				if (userInputUtils.askNewUserConfirmation()) {
+					User newUser = createUser(name,gameData);
+					return newUser;
+				} else {
+					return null;
+				}
+			}
+		} else {
+			if (userInputUtils.askNewUserConfirmation()) {
+				User newUser = createUser(name,gameData);
+				return newUser;
+			} else {
+				return null;
+			}
+		}
+	}
+	@Override
+	public User updateUser(User user) throws JAXBException {
 
-		Users users = readUserXml();
+		Users users = readUsers();
 		users.getUsers().forEach(userElement -> {
 			if (userElement.getName().equals(user.getName())) {
 				userElement.setConqueredCountry(user.getConqueredCountry());
@@ -59,33 +87,31 @@ public class UserServiceImpl implements UserService {
 				userElement.setLastConqueredCity(user.getLastConqueredCity());
 				userElement.setCurrentCity(user.getCurrentCity());
 				userElement.setExperiencePoint(user.getExperiencePoint());
+				userElement.setWonWorldMap(user.isWonWorldMap());
 			}
+			
 		});
-		writeUserXml(users);
-	}
-
-	@Override
-	public Optional<User> getUserProfile(String name) throws JAXBException {
-		Users users = readUserXml();
-		Optional<User> user = users.getUsers().stream().filter(x -> name.equals(x.getName())).findAny();
+		writeUsers(users);
 		return user;
 	}
 
 	@Override
-	public Users readUserXml() throws JAXBException {
-		JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
-		Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-		Users users = (Users) jaxbUnmarshaller.unmarshal(file);
-		return users;
+	public Users readUsers() throws JAXBException {
+		if (file.length() != 0) {
+			JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			Users users = (Users) jaxbUnmarshaller.unmarshal(file);
+			return users;
+		}
+		return null;
 	}
 
 	@Override
-	public void writeUserXml(Users users) throws JAXBException {
+	public void writeUsers(Users users) throws JAXBException {
 		JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
 		Marshaller marshaller = jaxbContext.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 		marshaller.marshal(users, file);
-
 	}
 
 }

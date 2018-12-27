@@ -1,53 +1,50 @@
 package org.worldmap;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.Scanner;
-
 import javax.xml.bind.JAXBException;
 
+import org.worldmap.model.GameData;
 import org.worldmap.model.User;
+import org.worldmap.service.GameDataService;
+import org.worldmap.service.PrintService;
 import org.worldmap.service.UserService;
+import org.worldmap.service.impl.GameDataServiceImpl;
+import org.worldmap.service.impl.PrintServiceImpl;
 import org.worldmap.service.impl.UserServiceImpl;
-import org.worldmap.util.PrintConsole;
+import org.worldmap.util.GameUtils;
+import org.worldmap.util.UserInputUtils;
 
 public class Main {
-	static UserService userService = new UserServiceImpl();
-	static PrintConsole printConsole = new PrintConsole();
-	static Properties properties = new Properties();
-	
+
 	public static void main(String[] args) {
+
+		UserService userService = new UserServiceImpl();
+		PrintService printService = new PrintServiceImpl();
+		GameDataService gameDataService = new GameDataServiceImpl();
 		
-		
-		File file = new File("users.xml");
+		UserInputUtils userInputUtils = new UserInputUtils();
+		GameUtils gameUtils = new GameUtils();
+
 		try {
-			properties.load(new FileInputStream("resources/messages.properties"));
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		printConsole.printSingleMessage(properties.getProperty("welcome.message"));
-		Scanner in = new Scanner(System.in); 
-        String name = in.nextLine(); 
-		
-		try {
-			if (file.length() != 0) {
-				Optional<User> user = userService.getUserProfile(name);
-				if (!user.isPresent()) {
-					printConsole.askUser(name);
-				}
-				else {
-					printConsole.printProfile(user.get());
-				}
+
+			printService.displayWelcomeMessage();
+
+			String name = userInputUtils.askUserName();
+
+			GameData gameData = gameDataService.loadGameData();
+			printService.printWorldMap(gameData);
+			User user = userService.getOrCreateUser(name, gameData);
+
+			if (user != null) {
+				printService.printUserDetail(user);
+				gameUtils.startGame(user, gameData);
+			} else {
+				printService.printExitMessage();
 			}
-			else {
-				printConsole.askUser(name);
-			}
+
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }

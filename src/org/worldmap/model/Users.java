@@ -1,6 +1,7 @@
 package org.worldmap.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -25,6 +26,7 @@ public class Users {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
 	
 	
 }

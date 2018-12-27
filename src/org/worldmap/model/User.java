@@ -2,12 +2,10 @@ package org.worldmap.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.worldmap.util.LoadData;
 
 @XmlRootElement(name = "user")
 public class User {
@@ -25,16 +23,15 @@ public class User {
 		
 	}
 	
-	public User(String name) throws JAXBException {
-		LoadData loadData =new LoadData();
-		Optional<Country> country = loadData.loadGameData().getGameData().stream().findFirst();
+	public User(String name,GameData gameData) throws JAXBException {
+
 		this.name = name;
 		this.experiencePoint = 0;
 		this.conqueredCountry = new ArrayList<>();
-		this.conqueredCountry.add("none"); //TODO : where to remove
-		this.currentBattleCountry = country.get().getName();
-		this.currentCity = country.get().getCities().get(0).getName();
+		this.currentBattleCountry = gameData.getGameData().get(0).getName();
+		this.currentCity = gameData.getGameData().get(0).getCities().get(0).getName();
 		this.lastConqueredCity ="none";
+
 	}
 	public String getName() {
 		return name;

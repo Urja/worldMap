@@ -7,14 +7,14 @@
 	<language>German </language>
 	<city>
 		<name>Berlin</name>
-		<word>Danke </word>
-		<translation>Thank you</translation>
+		<word>Brot</word>
+		<translation>Bread</translation>
 		<successMessage>yeI!!! You won Berlin </successMessage>
 	</city>
 	<city>
 		<name>Hamburg</name>
-		<word>Es tut uns leid</word>
-		<translation>Sorry</translation>
+		<word>Nein</word>
+		<translation>No</translation>
 		<successMessage>Hurrah!!!! You won Hamburg </successMessage>
 	</city>
 	<city>
