@@ -11,35 +11,35 @@
 		<name>Berlin</name>
 		<word>Brot</word>
 		<translation>Bread</translation>
-		<successMessage>yeI!!! You won Berlin </successMessage>
+		<successMessage>yeI!!! You won  Berlin, Don't forget to taste Weiße beer. </successMessage>
 	</city>
 	<city>
 		<order>2</order>
 		<name>Hamburg</name>
 		<word>Nein</word>
 		<translation>No</translation>
-		<successMessage>Hurrah!!!! You won Hamburg </successMessage>
+		<successMessage>Hurrah!!!! You won Hamburg, Buy something from Jungfernstieg. </successMessage>
 	</city>
 	<city>
 		<order>3</order>
 		<name>Munich</name>
 		<word>Der mann </word>
 		<translation>The Man</translation>
-		<successMessage>Yeh..!! You won Munich</successMessage>
+		<successMessage>Yeh..!! You won Munich, you must attend Oktoberfest.</successMessage>
 	</city>
 	<city>
 		<order>4</order>
 		<name>Cologne</name>
 		<word>Willkommen</word>
 		<translation>Welcome</translation>
-		<successMessage>yippee ..!! You won Cologne</successMessage>
+		<successMessage>yippee ..!! You won Cologne, Do visit St. Peter Cologne Cathedral.</successMessage>
 	</city>
 	<city>
 		<order>5</order>
 		<name>Frankfurt am</name>
 		<word>Ja</word>
 		<translation>Yes</translation>
-		<successMessage>Ja..!! You won Frankfurt am</successMessage>
+		<successMessage>MAMMA MIA!!! You won Frankfurt am, go and enjoy the famous Oprea house. </successMessage>
 	</city>
 </country>
 
@@ -51,38 +51,38 @@
 	<order>2</order>
 	<city>
 		<order>1</order>
-		<name>Toronto</name>
+		<name>Paris</name>
 		<word>Charmant</word>
 		<translation>Lovely</translation>
-		<successMessage>Youpi!!! You won Toronto </successMessage>
+		<successMessage>Youpi!!! You won Paris, Have a fancy night on the Eiffel Tower. </successMessage>
 	</city>
 	<city>
 		<order>2</order>
-		<name>Vancouver</name>
+		<name>Bordeaux</name>
 		<word>Comme</word>
 		<translation>Like</translation>
-		<successMessage>Yé!!!! You won Vancouver </successMessage>
+		<successMessage>Yé!!!! You won Bordeaux, buy some interesting stuff from rue sainte catherine.</successMessage>
 	</city>
 	<city>
 		<order>3</order>
-		<name>Montreal</name>
+		<name>Lyon</name>
 		<word>La nature</word>
 		<translation>Nature</translation>
-		<successMessage>Yahou..!! You won Montreal</successMessage>
+		<successMessage>Yahou..!! You won Lyon, have you tried  Bouchon meals??</successMessage>
 	</city>
 	<city>
 		<order>4</order>
-		<name>Ottawa</name>
+		<name>Marseille</name>
 		<word>Mère</word>
 		<translation>Mother</translation>
-		<successMessage>Ouais  ..!! You won Montreal</successMessage>
+		<successMessage>Ouais  ..!! You won Marseille, you must visit unique The Cathedral of Marseille.</successMessage>
 	</city>
 	<city>
 		<order>5</order>
-		<name>Calgary</name>
+		<name>Toulouse</name>
 		<word>Peu</word>
 		<translation>Little</translation>
-		<successMessage>yéééé..!! You won Calgary</successMessage>
+		<successMessage>yéééé..!! You won Toulouse, Relax along the River Garonne.</successMessage>
 	</city>
 </country>
 
@@ -98,35 +98,35 @@
 		<name>Barcelona</name>
 		<word>Hoy</word>
 		<translation>Today</translation>
-		<successMessage>Hurra!!! You won Barcelona </successMessage>
+		<successMessage>Hurra!!! You won Barcelona, fun below zero. Visit ICEBARCELONA! </successMessage>
 	</city>
 	<city>
 		<order>2</order>
 		<name>Madrid</name>
 		<word>Mañana</word>
 		<translation>Morning</translation>
-		<successMessage>ihurra!!!! You won Madrid </successMessage>
+		<successMessage>ihurra!!!! You won Madrid, give a royal visit to the Royal Palace of Madrid.</successMessage>
 	</city>
 	<city>
 		<order>3</order>
 		<name>Granada</name>
 		<word>Hola</word>
 		<translation>Hello</translation>
-		<successMessage>Yea..!! You won Granada</successMessage>
+		<successMessage>Yea..!! You won Granada. Visit and know more about The Alhambra.</successMessage>
 	</city>
 	<city>
 		<order>4</order>
 		<name>Segovia</name>
 		<word>Disfrutar</word>
 		<translation>Enjoy</translation>
-		<successMessage>Viva  ..!! You won Segovia</successMessage>
+		<successMessage>Viva  ..!! You won Segovia, see the charm of The Aqueduct’s Architecture</successMessage>
 	</city>
 	<city>
 		<order>5</order>
 		<name>Cordoba</name>
 		<word>Gracias</word>
 		<translation>Thank you</translation>
-		<successMessage>Qué guay..!! You won Cordoba</successMessage>
+		<successMessage>Qué guay..!! You won Cordoba, discover an evolution of architectural styles of Palacio de Viana </successMessage>
 	</city>
 </country>
 </gameMap>
