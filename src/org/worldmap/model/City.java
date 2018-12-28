@@ -4,6 +4,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "city")
 public class City {
+	
+	private Integer order;
 	private String name;
 	private String word;
 	private String translation;
@@ -34,6 +36,10 @@ public class City {
 	public void setSuccessMessage(String successMessage) {
 		this.successMessage = successMessage;
 	}
-	
-	
+	public Integer getOrder() {
+		return order;
+	}
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
 }

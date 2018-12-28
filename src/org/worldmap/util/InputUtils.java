@@ -5,13 +5,12 @@ import java.util.Scanner;
 import org.worldmap.service.PrintService;
 import org.worldmap.service.impl.PrintServiceImpl;
 
-public class UserInputUtils {
-	MessageUtils messageUtils = new MessageUtils();
+public class InputUtils {
 	static PrintService printService = new PrintServiceImpl();
 	
 	public String askUserName() {
 
-		printService.printSingleLineMessage(messageUtils.getUserNameInputMessage());
+		printService.printSingleLineMessage("name.message");
 
 		Scanner in = new Scanner(System.in);
 			String response = in.nextLine();
@@ -20,7 +19,7 @@ public class UserInputUtils {
 	}
 	public boolean askNewUserConfirmation() {
 
-		printService.printSingleLineMessage(messageUtils.getNewUSerConfirmationMessage());
+		printService.printSingleLineMessage("newuser.message");
 
 		Scanner in = new Scanner(System.in);
 			String response = in.nextLine();
@@ -29,7 +28,7 @@ public class UserInputUtils {
 			else if (response.equalsIgnoreCase("N") || response.equalsIgnoreCase("No"))
 				return false;
 			else {
-				printService.printMessage(messageUtils.getInvalidInputMessage());
+				printService.printMessage("invalid.input");
 				return false;
 			}
 		

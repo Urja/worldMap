@@ -4,28 +4,26 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.worldmap.model.GameData;
+import org.worldmap.model.Map;
 import org.worldmap.model.User;
 import org.worldmap.model.Users;
 import org.worldmap.service.UserService;
-import org.worldmap.util.UserInputUtils;
+import org.worldmap.util.InputUtils;
 
 public class UserServiceImpl implements UserService {
 
 	File file = new File("users.xml");
-	Properties properties = new Properties();
-	 UserInputUtils userInputUtils = new UserInputUtils();
+	 InputUtils inputUtils = new InputUtils();
 	 
 	@Override
-	public User createUser(String name, GameData gameData) throws JAXBException {
-		User user = new User(name, gameData);
+	public User createUser(String name, Map gameData) throws JAXBException {
+		User user = new User(name);
 		try {
 
 			JAXBContext jaxbContext = JAXBContext.newInstance(Users.class);
@@ -53,22 +51,22 @@ public class UserServiceImpl implements UserService {
 
 	
 	@Override
-	public User getOrCreateUser(String name, GameData gameData) throws JAXBException {
+	public User getOrCreateUser(String name, Map gameData) throws JAXBException {
 		Users users = readUsers();
 		if (users != null) {
 			Optional<User> user = users.getUsers().stream().filter(x -> name.equals(x.getName())).findAny();
 			if (user.isPresent()) {
 				return user.get();
 			} else {
-				if (userInputUtils.askNewUserConfirmation()) {
+				if (inputUtils.askNewUserConfirmation()) {
 					User newUser = createUser(name,gameData);
-					return newUser;
+					return newUser; //User instead of optional because User constructor returns user
 				} else {
 					return null;
 				}
 			}
 		} else {
-			if (userInputUtils.askNewUserConfirmation()) {
+			if (inputUtils.askNewUserConfirmation()) {
 				User newUser = createUser(name,gameData);
 				return newUser;
 			} else {
@@ -77,22 +75,18 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	@Override
-	public User updateUser(User user) throws JAXBException {
+	public void updateUser(User user) throws JAXBException {
 
 		Users users = readUsers();
 		users.getUsers().forEach(userElement -> {
 			if (userElement.getName().equals(user.getName())) {
+				userElement.setConqueredCityOrder(user.getConqueredCityOrder());
 				userElement.setConqueredCountry(user.getConqueredCountry());
-				userElement.setCurrentBattleCountry(user.getCurrentBattleCountry());
-				userElement.setLastConqueredCity(user.getLastConqueredCity());
-				userElement.setCurrentCity(user.getCurrentCity());
 				userElement.setExperiencePoint(user.getExperiencePoint());
-				userElement.setWonWorldMap(user.isWonWorldMap());
 			}
 			
 		});
 		writeUsers(users);
-		return user;
 	}
 
 	@Override

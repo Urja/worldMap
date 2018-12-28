@@ -5,31 +5,37 @@
 <country>
 	<name>Germany </name>
 	<language>German </language>
+	<order>1</order>
 	<city>
+		<order>1</order>
 		<name>Berlin</name>
 		<word>Brot</word>
 		<translation>Bread</translation>
 		<successMessage>yeI!!! You won Berlin </successMessage>
 	</city>
 	<city>
+		<order>2</order>
 		<name>Hamburg</name>
 		<word>Nein</word>
 		<translation>No</translation>
 		<successMessage>Hurrah!!!! You won Hamburg </successMessage>
 	</city>
 	<city>
+		<order>3</order>
 		<name>Munich</name>
 		<word>Der mann </word>
 		<translation>The Man</translation>
 		<successMessage>Yeh..!! You won Munich</successMessage>
 	</city>
 	<city>
+		<order>4</order>
 		<name>Cologne</name>
 		<word>Willkommen</word>
 		<translation>Welcome</translation>
 		<successMessage>yippee ..!! You won Cologne</successMessage>
 	</city>
 	<city>
+		<order>5</order>
 		<name>Frankfurt am</name>
 		<word>Ja</word>
 		<translation>Yes</translation>
@@ -38,35 +44,41 @@
 </country>
 
 
-<!-- Canada -->
+<!-- France -->
 <country>
-	<name>Canada </name>
+	<name>France </name>
 	<language>French </language>
+	<order>2</order>
 	<city>
+		<order>1</order>
 		<name>Toronto</name>
 		<word>Charmant</word>
 		<translation>Lovely</translation>
 		<successMessage>Youpi!!! You won Toronto </successMessage>
 	</city>
 	<city>
+		<order>2</order>
 		<name>Vancouver</name>
 		<word>Comme</word>
 		<translation>Like</translation>
 		<successMessage>Yé!!!! You won Vancouver </successMessage>
 	</city>
 	<city>
+		<order>3</order>
 		<name>Montreal</name>
 		<word>La nature</word>
 		<translation>Nature</translation>
 		<successMessage>Yahou..!! You won Montreal</successMessage>
 	</city>
 	<city>
+		<order>4</order>
 		<name>Ottawa</name>
 		<word>Mère</word>
 		<translation>Mother</translation>
 		<successMessage>Ouais  ..!! You won Montreal</successMessage>
 	</city>
 	<city>
+		<order>5</order>
 		<name>Calgary</name>
 		<word>Peu</word>
 		<translation>Little</translation>
@@ -79,32 +91,38 @@
 <!-- Spain  -->
 <country>
 	<name>Spain</name>
-	<language>Spanish </language>
+	<language>Spanish</language>
+	<order>3</order>
 	<city>
+		<order>1</order>
 		<name>Barcelona</name>
 		<word>Hoy</word>
 		<translation>Today</translation>
 		<successMessage>Hurra!!! You won Barcelona </successMessage>
 	</city>
 	<city>
+		<order>2</order>
 		<name>Madrid</name>
 		<word>Mañana</word>
 		<translation>Morning</translation>
 		<successMessage>ihurra!!!! You won Madrid </successMessage>
 	</city>
 	<city>
+		<order>3</order>
 		<name>Granada</name>
 		<word>Hola</word>
 		<translation>Hello</translation>
 		<successMessage>Yea..!! You won Granada</successMessage>
 	</city>
 	<city>
+		<order>4</order>
 		<name>Segovia</name>
 		<word>Disfrutar</word>
 		<translation>Enjoy</translation>
 		<successMessage>Viva  ..!! You won Segovia</successMessage>
 	</city>
 	<city>
+		<order>5</order>
 		<name>Cordoba</name>
 		<word>Gracias</word>
 		<translation>Thank you</translation>

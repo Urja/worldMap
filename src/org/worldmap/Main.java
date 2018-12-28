@@ -2,16 +2,16 @@ package org.worldmap;
 
 import javax.xml.bind.JAXBException;
 
-import org.worldmap.model.GameData;
+import org.worldmap.core.GameEngine;
+import org.worldmap.model.Map;
 import org.worldmap.model.User;
-import org.worldmap.service.GameDataService;
+import org.worldmap.service.MapService;
 import org.worldmap.service.PrintService;
 import org.worldmap.service.UserService;
-import org.worldmap.service.impl.GameDataServiceImpl;
+import org.worldmap.service.impl.MapServiceImpl;
 import org.worldmap.service.impl.PrintServiceImpl;
 import org.worldmap.service.impl.UserServiceImpl;
-import org.worldmap.util.GameUtils;
-import org.worldmap.util.UserInputUtils;
+import org.worldmap.util.InputUtils;
 
 public class Main {
 
@@ -19,26 +19,27 @@ public class Main {
 
 		UserService userService = new UserServiceImpl();
 		PrintService printService = new PrintServiceImpl();
-		GameDataService gameDataService = new GameDataServiceImpl();
+		MapService mapService = new MapServiceImpl();
 		
-		UserInputUtils userInputUtils = new UserInputUtils();
-		GameUtils gameUtils = new GameUtils();
+		InputUtils inputUtils = new InputUtils();
+		GameEngine gameEngine = new GameEngine();
 
 		try {
 
-			printService.displayWelcomeMessage();
+			printService.printMessage("welcome.message");
 
-			String name = userInputUtils.askUserName();
+			String name = inputUtils.askUserName();
 
-			GameData gameData = gameDataService.loadGameData();
-			printService.printWorldMap(gameData);
-			User user = userService.getOrCreateUser(name, gameData);
+			Map map = mapService.loadMap();
+			printService.printWorldMap(map);
+			User user = userService.getOrCreateUser(name, map);
 
 			if (user != null) {
 				printService.printUserDetail(user);
-				gameUtils.startGame(user, gameData);
+				gameEngine.startGame(user, map);
+				
 			} else {
-				printService.printExitMessage();
+				printService.printMessage("exit.message");
 			}
 
 		} catch (JAXBException e) {

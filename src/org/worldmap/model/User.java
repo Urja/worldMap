@@ -12,25 +12,21 @@ public class User {
 	
 	private String name;
 	
-	private List<String> conqueredCountry;
-	private String currentBattleCountry;
-	private String lastConqueredCity;
-	private String currentCity;
+	private List<Integer> conqueredCountry;
+	private Integer conqueredCityOrder;
 	private Integer experiencePoint;
-	private boolean wonWorldMap;
 	
 	public User() {
 		
 	}
 	
-	public User(String name,GameData gameData) throws JAXBException {
+	public User(String name) throws JAXBException {
 
 		this.name = name;
 		this.experiencePoint = 0;
 		this.conqueredCountry = new ArrayList<>();
-		this.currentBattleCountry = gameData.getGameData().get(0).getName();
-		this.currentCity = gameData.getGameData().get(0).getCities().get(0).getName();
-		this.lastConqueredCity ="none";
+		this.conqueredCountry.add(0);
+		this.conqueredCityOrder =0;
 
 	}
 	public String getName() {
@@ -40,22 +36,14 @@ public class User {
 		this.name = name;
 	}
 
-	public List<String> getConqueredCountry() {
+	public List<Integer> getConqueredCountry() {
 		return conqueredCountry;
 	}
 
-	public void setConqueredCountry(List<String> conqueredCountry) {
+	public void setConqueredCountry(List<Integer> conqueredCountry) {
 		this.conqueredCountry = conqueredCountry;
 	}
-
-	public String getCurrentBattleCountry() {
-		return currentBattleCountry;
-	}
-
-	public void setCurrentBattleCountry(String currentBattleCountry) {
-		this.currentBattleCountry = currentBattleCountry;
-	}
-
+	
 	public Integer getExperiencePoint() {
 		return experiencePoint;
 	}
@@ -63,28 +51,12 @@ public class User {
 		this.experiencePoint = experiencePoint;
 	}
 
-	public String getCurrentCity() {
-		return currentCity;
+	public Integer getConqueredCityOrder() {
+		return conqueredCityOrder;
 	}
 
-	public void setCurrentCity(String currentCity) {
-		this.currentCity = currentCity;
-	}
-
-	public String getLastConqueredCity() {
-		return lastConqueredCity;
-	}
-
-	public void setLastConqueredCity(String lastConqueredCity) {
-		this.lastConqueredCity = lastConqueredCity;
-	}
-
-	public boolean isWonWorldMap() {
-		return wonWorldMap;
-	}
-
-	public void setWonWorldMap(boolean wonWorldMap) {
-		this.wonWorldMap = wonWorldMap;
+	public void setConqueredCityOrder(Integer conqueredCityOrder) {
+		this.conqueredCityOrder = conqueredCityOrder;
 	}
 
 }

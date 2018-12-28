@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Country {
 
+	private Integer order;
 	private String name;
 	private String language;
 	
@@ -40,6 +41,14 @@ public class Country {
 	public void setLanguage(String language) {
 		this.language = language;
 	}
-	
-	
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
+
 }

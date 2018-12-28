@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <users>
     <user>
-        <conqueredCountry>none</conqueredCountry>
-        <conqueredCountry>Canada </conqueredCountry>
-        <conqueredCountry>Spain</conqueredCountry>
-        <currentBattleCountry>none</currentBattleCountry>
-        <currentCity>none</currentCity>
-        <experiencePoint>60</experiencePoint>
-        <lastConqueredCity>Cordoba</lastConqueredCity>
-        <name>Urja</name>
-        <wonWorldMap>true</wonWorldMap>
+        <conqueredCityOrder>0</conqueredCityOrder>
+        <conqueredCountry>0</conqueredCountry>
+        <conqueredCountry>1</conqueredCountry>
+        <conqueredCountry>2</conqueredCountry>
+        <conqueredCountry>3</conqueredCountry>
+        <experiencePoint>65</experiencePoint>
+        <name>urja</name>
     </user>
     <user>
-        <currentBattleCountry>Germany </currentBattleCountry>
-        <currentCity>Berlin</currentCity>
-        <experiencePoint>0</experiencePoint>
-        <lastConqueredCity>none</lastConqueredCity>
-        <name>Vanadana</name>
-        <wonWorldMap>false</wonWorldMap>
+        <conqueredCityOrder>1</conqueredCityOrder>
+        <conqueredCountry>0</conqueredCountry>
+        <conqueredCountry>1</conqueredCountry>
+        <conqueredCountry>2</conqueredCountry>
+        <experiencePoint>55</experiencePoint>
+        <name>yo</name>
     </user>
     <user>
-        <conqueredCountry>Canada </conqueredCountry>
-        <conqueredCountry>Germany </conqueredCountry>
-        <conqueredCountry>Spain</conqueredCountry>
-        <conqueredCountry>Canada </conqueredCountry>
-        <currentBattleCountry>none</currentBattleCountry>
-        <currentCity>none</currentCity>
-        <experiencePoint>60</experiencePoint>
-        <lastConqueredCity>Cordoba</lastConqueredCity>
-        <name>Vandana</name>
-        <wonWorldMap>true</wonWorldMap>
+        <conqueredCityOrder>0</conqueredCityOrder>
+        <conqueredCountry>0</conqueredCountry>
+        <conqueredCountry>1</conqueredCountry>
+        <conqueredCountry>2</conqueredCountry>
+        <conqueredCountry>3</conqueredCountry>
+        <experiencePoint>75</experiencePoint>
+        <name>op</name>
     </user>
     <user>
-        <currentBattleCountry>Germany </currentBattleCountry>
-        <currentCity>Berlin</currentCity>
-        <experiencePoint>0</experiencePoint>
-        <lastConqueredCity>none</lastConqueredCity>
-        <name>test</name>
-        <wonWorldMap>false</wonWorldMap>
+        <conqueredCityOrder>0</conqueredCityOrder>
+        <conqueredCountry>0</conqueredCountry>
+        <conqueredCountry>1</conqueredCountry>
+        <conqueredCountry>2</conqueredCountry>
+        <experiencePoint>50</experiencePoint>
+        <name>o</name>
+    </user>
+    <user>
+        <conqueredCityOrder>0</conqueredCityOrder>
+        <conqueredCountry>0</conqueredCountry>
+        <conqueredCountry>1</conqueredCountry>
+        <conqueredCountry>2</conqueredCountry>
+        <conqueredCountry>3</conqueredCountry>
+        <experiencePoint>70</experiencePoint>
+        <name>a</name>
     </user>
 </users>
