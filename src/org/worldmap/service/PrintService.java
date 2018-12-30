@@ -1,15 +1,24 @@
 package org.worldmap.service;
 
-import org.worldmap.model.Map;
+import java.util.List;
+
+import org.worldmap.model.Country;
+import org.worldmap.model.Atlas;
 import org.worldmap.model.User;
 
+/**
+ * 
+ * @author uramanan
+ * Use service when any message needs to be print from application
+ */
 public interface PrintService {
 	
 	void printCountryConcouredMessage(String countryName);
 	void printMessage(String message);
-	void printUserDetail(User user);
+	void printUserDetail(User user, List<Country> countries);
 	void printSingleLineMessage(String message);
-	void printWorldMap(Map gameData);
-	void printStaticData(String data);
+	void printWorldMap(Atlas atlas);
+	void print(String message);
+	void printNewLine(String message);
 	
 }

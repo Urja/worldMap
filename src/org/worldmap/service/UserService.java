@@ -1,19 +1,16 @@
 package org.worldmap.service;
 
-import java.util.Optional;
-
-import javax.xml.bind.JAXBException;
-
-import org.worldmap.model.City;
-import org.worldmap.model.Map;
+import org.worldmap.exception.UserException;
+import org.worldmap.model.AtlasUsers;
 import org.worldmap.model.User;
-import org.worldmap.model.Users;
 
+/**
+ * 
+ * @author uramanan
+ * User related operations
+ */
 public interface UserService {
-	
-	User getOrCreateUser(String name, Map map) throws JAXBException;
-	User createUser(String name, Map map) throws JAXBException;
-	void updateUser(User user) throws JAXBException;
-	Users readUsers() throws JAXBException;
-	void writeUsers(Users users) throws JAXBException;
+	void updateUser(User user) throws UserException;
+	AtlasUsers readUsers() throws UserException;
+	User askAndGetUser();
 }

@@ -1,22 +1,22 @@
 package org.worldmap.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
- * @author uramanan
+ * @author uramanan 
  * Separate Class created for only list because of Marshaller and UnMarshaller.
  */
-@XmlRootElement(name = "users")
+@XmlRootElement(name = "atlasusers")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Users {
-	
-	@XmlElement(name="user")
+public class AtlasUsers {
+
+	@XmlElement(name = "user")
 	private List<User> users;
 
 	public List<User> getUsers() {
@@ -27,6 +27,4 @@ public class Users {
 		this.users = users;
 	}
 
-	
-	
 }

@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "country")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Country {
+public class Country implements Comparable<Country> {
 
 	private Integer order;
 	private String name;
@@ -49,6 +49,11 @@ public class Country {
 	public void setOrder(Integer order) {
 		this.order = order;
 	}
-
-
+	/**
+	 * Note: Not overriding equals method
+	 */
+	@Override
+	public int compareTo(Country country) {	
+		 return Integer.compare(this.order, country.order);
+	}
 }

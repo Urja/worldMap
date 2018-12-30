@@ -1,51 +1,40 @@
 package org.worldmap;
 
-import javax.xml.bind.JAXBException;
-
-import org.worldmap.core.GameEngine;
-import org.worldmap.model.Map;
+import org.worldmap.exception.AtlasDataException;
+import org.worldmap.model.Atlas;
 import org.worldmap.model.User;
-import org.worldmap.service.MapService;
+import org.worldmap.service.AtlasService;
 import org.worldmap.service.PrintService;
 import org.worldmap.service.UserService;
-import org.worldmap.service.impl.MapServiceImpl;
+import org.worldmap.service.impl.AtlasServiceImpl;
+import org.worldmap.service.impl.GameEngineServiceImpl;
 import org.worldmap.service.impl.PrintServiceImpl;
 import org.worldmap.service.impl.UserServiceImpl;
-import org.worldmap.util.InputUtils;
 
 public class Main {
 
 	public static void main(String[] args) {
-
-		UserService userService = new UserServiceImpl();
 		PrintService printService = new PrintServiceImpl();
-		MapService mapService = new MapServiceImpl();
-		
-		InputUtils inputUtils = new InputUtils();
-		GameEngine gameEngine = new GameEngine();
+		UserService userService = new UserServiceImpl();
+		AtlasService atlasService = new AtlasServiceImpl();
+		GameEngineServiceImpl gameEngineService = new GameEngineServiceImpl();
 
-		try {
+		printService.printMessage("welcome.message");
+		User user = userService.askAndGetUser();
+		if (user != null) {
+			Atlas atlas;
+			try {
+				atlas = atlasService.loadAtlas();
+				if (atlas.getCountries().size() != user.getConqueredCountryOrder())
+					printService.printWorldMap(atlas);
 
-			printService.printMessage("welcome.message");
-
-			String name = inputUtils.askUserName();
-
-			Map map = mapService.loadMap();
-			printService.printWorldMap(map);
-			User user = userService.getOrCreateUser(name, map);
-
-			if (user != null) {
-				printService.printUserDetail(user);
-				gameEngine.startGame(user, map);
-				
-			} else {
-				printService.printMessage("exit.message");
+				printService.printUserDetail(user, atlas.getCountries());
+				gameEngineService.startGame(user, atlas);
+			} catch (AtlasDataException e) {
+				printService.print(e.getMessage());
 			}
-
-		} catch (JAXBException e) {
-			e.printStackTrace();
+		} else {
+			printService.printMessage("exit.message");
 		}
-
 	}
-
 }

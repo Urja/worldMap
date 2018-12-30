@@ -2,63 +2,69 @@ package org.worldmap.service.impl;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
-import org.worldmap.model.Map;
+import org.worldmap.model.Country;
+import org.worldmap.model.Atlas;
 import org.worldmap.model.User;
 import org.worldmap.service.PrintService;
+import org.worldmap.util.WorldMapConstant;
 
 public class PrintServiceImpl implements PrintService{
 	
-Properties properties = new Properties();
+	Properties properties = new Properties();
 	
 	public PrintServiceImpl(){
 		try {
-			properties.load(new FileInputStream("resources/messages.properties"));
+			properties.load(new FileInputStream(WorldMapConstant.MESSAGE_PROPERTIES));
 		} catch (IOException e) {
-			e.printStackTrace();
+			print("Message property file not found.");
 		}
 	}
+	
 	@Override
 	public void printCountryConcouredMessage(String countryName) {
 		printMessage(properties.getProperty("country.conquered.message")+countryName);
 	}
 
-
 	@Override
 	public void printMessage(String message) {
 		System.out.println(properties.getProperty(message));
-		
 	}
+	
 	@Override
 	public void printSingleLineMessage(String message) {
 		System.out.print(properties.getProperty(message));
-		
 	}
 
 	@Override
-	public void printUserDetail(User user) {
-		System.out.println("**************************");
-		/*System.out.println("Name: "+user.getName()+"\nCurrent battle country: "+user.getCurrentBattleCountry()+
-				" \nCurrent battle city: "+user.getCurrentCity()+" \nPreiviously conquered country: "+String.join("\t", String.join(",", user.getConqueredCountry())) +
-				" \nPriviously coonquered city: "+user.getLastConqueredCity()+"\nExperience point: "+user.getExperiencePoint());
-		*///TODO
-		System.out.println("**************************");
+	public void printUserDetail(User user, List<Country> countries) {
+		printNewLine("**************************");
+		printNewLine("Name: "+user.getName()+"\nExperience point: "+user.getExperiencePoint());
+		printNewLine("Conquered Countries:");
+		countries.stream().sorted().filter(c -> c.getOrder() <= user.getConqueredCountryOrder())
+		.forEach(country -> printNewLine(country.getName()));
+		printNewLine("**************************");
 	}
-
 	
 	@Override
-	public void printWorldMap(Map map) {
-		System.out.print("You have to concurred all countries to win the world map.");
-		map.getMapInfo().forEach(country -> {
-			System.out.print("\n*))"+country.getName()+"("+country.getLanguage()+") O");
-			country.getCities().forEach(city -> System.out.print("-->"+city.getName()));
+	public void printWorldMap(Atlas atlas) {
+		printNewLine("You have to concurred all countries to win the world map.");
+		atlas.getCountries().forEach(country -> {
+			printNewLine("))"+country.getName()+"("+country.getLanguage()+") O");
+			country.getCities().forEach(city ->print("-->"+city.getName()));
 		});
-		System.out.print("\n");
 	}
+	
 	@Override
-	public void printStaticData(String data) {
-		System.out.print(data);
+	public void print(String message) {
+		System.out.print(message);
+	}
+
+	@Override
+	public void printNewLine(String message) {
+		System.out.println(message);
 		
 	}
 

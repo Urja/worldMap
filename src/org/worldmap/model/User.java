@@ -1,18 +1,15 @@
 package org.worldmap.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.worldmap.util.WorldMapConstant;
 
 
 @XmlRootElement(name = "user")
 public class User {
 	
 	private String name;
-	
-	private List<Integer> conqueredCountry;
+	private Integer conqueredCountryOrder;
 	private Integer conqueredCityOrder;
 	private Integer experiencePoint;
 	
@@ -20,35 +17,29 @@ public class User {
 		
 	}
 	
-	public User(String name) throws JAXBException {
+	public User(String name){
 
 		this.name = name;
 		this.experiencePoint = 0;
-		this.conqueredCountry = new ArrayList<>();
-		this.conqueredCountry.add(0);
+		this.conqueredCountryOrder = 0;
 		this.conqueredCityOrder =0;
 
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public List<Integer> getConqueredCountry() {
-		return conqueredCountry;
+	public Integer getConqueredCountryOrder() {
+		return conqueredCountryOrder;
 	}
 
-	public void setConqueredCountry(List<Integer> conqueredCountry) {
-		this.conqueredCountry = conqueredCountry;
-	}
-	
-	public Integer getExperiencePoint() {
-		return experiencePoint;
-	}
-	public void setExperiencePoint(Integer experiencePoint) {
-		this.experiencePoint = experiencePoint;
+	public void setConqueredCountryOrder(Integer conqueredCountryOrder) {
+		this.conqueredCountryOrder = conqueredCountryOrder;
 	}
 
 	public Integer getConqueredCityOrder() {
@@ -59,4 +50,15 @@ public class User {
 		this.conqueredCityOrder = conqueredCityOrder;
 	}
 
+	public Integer getExperiencePoint() {
+		return experiencePoint;
+	}
+
+	public void setExperiencePoint(Integer experiencePoint) {
+		this.experiencePoint = experiencePoint;
+	}
+	
+	public void gainExperience() {
+		this.experiencePoint = experiencePoint+ WorldMapConstant.EXPERIENCE_INCREASED_BY;
+	}
 }
