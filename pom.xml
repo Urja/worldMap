@@ -15,6 +15,7 @@
 				</excludes>
 			</resource>
 		</resources>
+		<testSourceDirectory>test</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -37,20 +38,36 @@
 				</executions>
 				<configuration>
 					<mainClass>org.worldmap.Main</mainClass>
-					<arguments>
-						<argument>foo</argument>
-						<argument>bar</argument>
-					</arguments>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<properties>
+		<powermock.version>1.7.1</powermock.version>
+	</properties>
 	<!-- For JUnit test cases -->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.7.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>${powermock.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>${powermock.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

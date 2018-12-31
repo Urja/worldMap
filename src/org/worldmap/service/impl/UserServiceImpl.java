@@ -15,7 +15,6 @@ import org.worldmap.model.AtlasUsers;
 import org.worldmap.model.User;
 import org.worldmap.service.PrintService;
 import org.worldmap.service.UserService;
-import org.worldmap.util.InputUtils;
 import org.worldmap.util.WorldMapConstant;
 
 public class UserServiceImpl implements UserService {
@@ -23,9 +22,59 @@ public class UserServiceImpl implements UserService {
 	File file = new File(WorldMapConstant.USER_FILE);
 	PrintService printService = new PrintServiceImpl();
 
-	private User createUser(String name) throws UserException {
-		User user = new User(name);
+	@Override
+	public void updateUser(User user) throws UserException {
+		AtlasUsers atlasUsers = readUsers();
+		atlasUsers.getUsers().forEach(userElement -> {
+			if (userElement.getName().equals(user.getName())) {
+				userElement.setConqueredCityOrder(user.getConqueredCityOrder());
+				userElement.setConqueredCountryOrder(user.getConqueredCountryOrder());
+				userElement.setExperiencePoint(user.getExperiencePoint());
+			}
+		});
+		writeUsers(atlasUsers);
+	}
 
+	private AtlasUsers readUsers() throws UserException {
+		if (file.length() == 0) {
+			return null;
+		}
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			return (AtlasUsers) jaxbUnmarshaller.unmarshal(file);
+		} catch (JAXBException e) {
+			throw new UserException("Read User :" + e.getLocalizedMessage());
+		}
+	}
+
+	private void writeUsers(AtlasUsers atlasUsers) throws UserException {
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			marshaller.marshal(atlasUsers, file);
+		} catch (JAXBException e) {
+			throw new UserException("Write User :" + e.getLocalizedMessage());
+		}
+	}
+
+	@Override
+	public Optional<User> getUser(String name) throws UserException {
+		if (name == null || name.isEmpty() || name.matches(WorldMapConstant.INVALID_CHARACTERS)) {
+			throw new UserException("Invalid User Name '" + name + "'");
+		}
+		AtlasUsers atlasUsers = readUsers();
+		if (atlasUsers != null) {
+			return atlasUsers.getUsers().stream().filter(x -> name.equals(x.getName())).findAny();
+		}
+		return Optional.empty();
+	}
+
+	@Override
+	public User createUser(String name) throws UserException {
+		User user = new User(name);
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
 			AtlasUsers atlasUsers;
@@ -44,83 +93,6 @@ public class UserServiceImpl implements UserService {
 			throw new UserException("Create User :" + e.getLocalizedMessage());
 		}
 		return user;
-	}
-
-	private User getOrCreateUser(String name) throws UserException {
-		if (name == null || name.isEmpty() || name.matches(WorldMapConstant.INVALID_CHARACTERS)) {
-			throw new UserException("Invalid User Name '" + name + "'");
-		}
-		AtlasUsers atlasUsers = readUsers();
-		if (atlasUsers == null) {
-			return askOrCreateUser(name);
-		}
-		Optional<User> user = atlasUsers.getUsers().stream()
-				.filter(x -> name.equals(x.getName()))
-				.findAny();
-		if(user.isPresent()) {
-			return user.get();
-		}
-		else {
-			return askOrCreateUser(name);
-		}
-	}
-
-	@Override
-	public void updateUser(User user) throws UserException {
-		AtlasUsers atlasUsers = readUsers();
-		atlasUsers.getUsers().forEach(userElement -> {
-			if (userElement.getName().equals(user.getName())) {
-				userElement.setConqueredCityOrder(user.getConqueredCityOrder());
-				userElement.setConqueredCountryOrder(user.getConqueredCountryOrder());
-				userElement.setExperiencePoint(user.getExperiencePoint());
-			}
-		});
-		writeUsers(atlasUsers);
-	}
-
-	@Override
-	public AtlasUsers readUsers() throws UserException {
-		if (file.length() == 0) {
-			return null;
-		}
-		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			return (AtlasUsers) jaxbUnmarshaller.unmarshal(file);
-		} catch (JAXBException e) {
-			throw new UserException("Read User :" + e.getLocalizedMessage());
-		}
-	}
-
-	@Override
-	public User askAndGetUser() {
-		String name = InputUtils.askUserName();
-		try {
-			return getOrCreateUser(name);
-		} catch (UserException e) {
-			printService.printNewLine(e.getMessage());
-			return askAndGetUser();
-		}
-	}
-
-	private void writeUsers(AtlasUsers atlasUsers) throws UserException {
-		JAXBContext jaxbContext;
-		try {
-			jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			marshaller.marshal(atlasUsers, file);
-		} catch (JAXBException e) {
-			throw new UserException("Write User :" + e.getLocalizedMessage());
-		}
-	}
-
-	private User askOrCreateUser(String name) throws UserException {
-		if (InputUtils.askNewUserConfirmation()) {
-			return createUser(name);
-		} else {
-			return null;
-		}
 	}
 
 }

@@ -9,6 +9,5 @@ import org.worldmap.model.Atlas;
  * For Atlas related operations
  */
 public interface AtlasService {
-	
 	Atlas loadAtlas() throws AtlasDataException;
 }
