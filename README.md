@@ -82,8 +82,8 @@ Give an example
 * If user do not want answer the question or do not know the answer than skip question should be there.
 
 ## Limitation
-*Non Latin characters are not allowed, therefore, Atlas.xml will not support words in Hindi or Arabic.
-*Used XML for data read and write because of library constraint. Json could be easy but it require a library.
+* Non Latin characters are not allowed, therefore, Atlas.xml will not support words in Hindi or Arabic.
+* Used XML for data read and write because of library constraint. Json could be easy but it require a library.
 
 ## External Library
 * Maven - For application build.
