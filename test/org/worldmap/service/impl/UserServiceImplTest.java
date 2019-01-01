@@ -32,7 +32,7 @@ public class UserServiceImplTest {
 	public void testSetup(){
 		try {
 			testReadUser();
-			PowerMockito.when(userService,"readUsers").thenReturn(atlasUsers);
+			PowerMockito.doReturn(atlasUsers).when(userService,"readUsers");
 			PowerMockito.doNothing().when(userService,"writeUsers",Mockito.any());
 		}catch (Exception e){
 			e.printStackTrace();
