@@ -37,11 +37,16 @@ public class PrintServiceImpl implements PrintService{
 	public void printUserDetail(User user, List<Country> countries) {
 		printNewLine("\n**************************");
 		printNewLine("Name: "+user.getName()+"\nExperience point: "+user.getExperiencePoint());
-		printNewLine("Conquered Countries:");
-		countries.stream()
-				.sorted()
-				.filter(c -> c.getOrder() <= user.getConqueredCountryOrder())
-				.forEach(country -> printNewLine(country.getName()));
+		printSingleLine("Conquered Countries:");
+		if(user.getConqueredCountryOrder().equals(0)){
+			printNewLine("None");
+		}
+		else {
+			countries.stream()
+					.sorted()
+					.filter(c -> c.getOrder() <= user.getConqueredCountryOrder())
+					.forEach(country -> printNewLine(country.getName()));
+		}
 		printNewLine("**************************");
 	}
 	
@@ -49,7 +54,7 @@ public class PrintServiceImpl implements PrintService{
 	public void printWorldMap(Atlas atlas) {
 		printNewLine("You have to concurred all countries to win the world map.");
 		atlas.getCountries().forEach(country -> {
-			printSingleLine("\n))"+country.getName()+"("+country.getLanguage()+") O");
+			printSingleLine("\n"+country.getOrder()+")"+country.getName()+"("+country.getLanguage()+") O");
 			country.getCities().forEach(city ->printSingleLine("-->"+city.getName()));
 		});
 	}
