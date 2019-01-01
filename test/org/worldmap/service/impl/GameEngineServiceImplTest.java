@@ -36,7 +36,7 @@ public class GameEngineServiceImplTest {
 			testReadUser();
 			PowerMockito.mockStatic(InputUtils.class);
 			PowerMockito.when(InputUtils.getUserInput()).thenReturn("testTranslation");
-			PowerMockito.when(userService,"readUsers").thenReturn(atlasUsers);
+			PowerMockito.doReturn(atlasUsers).when(userService,"readUsers");
 			PowerMockito.doNothing().when(userService,"updateUser",Mockito.any());
 		}catch (Exception e){
 			e.printStackTrace();
