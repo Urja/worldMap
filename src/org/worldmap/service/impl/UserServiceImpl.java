@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
 			}
 			writeUsers(atlasUsers);
 		} catch (JAXBException e) {
-			throw new UserException("Create User :" + e.getLocalizedMessage());
+			throw new UserException("Create User :" + e.getLocalizedMessage(), e);
 		}
 		return user;
 	}

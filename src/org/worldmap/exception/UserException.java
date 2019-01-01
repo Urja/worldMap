@@ -1,16 +1,19 @@
 package org.worldmap.exception;
 
-public class UserException  extends Exception{
-	/**
-	 * Class use to handle User related exceptions
-	 * Generally used in UserService
-	 */
+/**
+ * Class use to handle User related exceptions
+ * Generally used in UserService
+ */
+public class UserException extends RuntimeException {
+
 	private static final long serialVersionUID = 1L;
-	public UserException(){
-		 super();
-	}
+
 	public UserException(String message) {
 		super(message);
+	}
+
+	public UserException(String message, Throwable t) {
+		super(message, t);
 	}
 }
 	
