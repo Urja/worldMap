@@ -35,7 +35,7 @@ public class PrintServiceImpl implements PrintService{
 
 	@Override
 	public void printUserDetail(User user, List<Country> countries) {
-		printNewLine("**************************");
+		printNewLine("\n**************************");
 		printNewLine("Name: "+user.getName()+"\nExperience point: "+user.getExperiencePoint());
 		printNewLine("Conquered Countries:");
 		countries.stream()
@@ -49,7 +49,7 @@ public class PrintServiceImpl implements PrintService{
 	public void printWorldMap(Atlas atlas) {
 		printNewLine("You have to concurred all countries to win the world map.");
 		atlas.getCountries().forEach(country -> {
-			printNewLine("))"+country.getName()+"("+country.getLanguage()+") O");
+			printSingleLine("\n))"+country.getName()+"("+country.getLanguage()+") O");
 			country.getCities().forEach(city ->printSingleLine("-->"+city.getName()));
 		});
 	}
