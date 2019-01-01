@@ -6,9 +6,8 @@ import org.worldmap.model.User;
 import java.util.Optional;
 
 /**
- * 
+ * Use for user related operations.
  * @author uramanan
- * User related operations
  */
 public interface UserService {
 	

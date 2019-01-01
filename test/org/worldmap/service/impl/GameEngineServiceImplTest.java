@@ -24,11 +24,10 @@ public class GameEngineServiceImplTest {
 
 	private UserService userService = PowerMockito.spy(new UserServiceImpl());
 	private PrintService printService = PowerMockito.spy(new PrintServiceImpl());
-	GameEngineService gameEngineService = new GameEngineServiceImpl(printService, userService);
-	User user =new User("testUser");
-	Atlas atlas =new Atlas();
-	AtlasUsers atlasUsers = new AtlasUsers();
-
+	private GameEngineService gameEngineService = new GameEngineServiceImpl(printService, userService);
+	private User user =new User("testUser");
+	private Atlas atlas =new Atlas();
+	private AtlasUsers atlasUsers = new AtlasUsers();
 
 	@Before
 	public void testSetup(){
@@ -42,7 +41,6 @@ public class GameEngineServiceImplTest {
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -68,12 +66,10 @@ public class GameEngineServiceImplTest {
 		List<Country> countries = new ArrayList<>();
 		countries.add(country);
 		atlas.setCountries(countries);
-		
 	}
-	private AtlasUsers testReadUser() {
+	private void testReadUser() {
 		List<User> users =new ArrayList<>();
 		users.add(user);
 		atlasUsers.setUsers(users);
-		return atlasUsers;
 	}
 }

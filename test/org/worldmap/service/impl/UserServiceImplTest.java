@@ -25,10 +25,8 @@ import static org.junit.Assert.*;
 public class UserServiceImplTest {
 
 	private UserService userService = PowerMockito.spy(new UserServiceImpl());
-
 	private String name= "testUser";
-
-	AtlasUsers atlasUsers = new AtlasUsers();
+	private AtlasUsers atlasUsers = new AtlasUsers();
 
 	@Before
 	public void testSetup(){
@@ -39,7 +37,6 @@ public class UserServiceImplTest {
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -83,11 +80,10 @@ public class UserServiceImplTest {
 		}
 	}
 	
-	private AtlasUsers testReadUser() {
+	private void testReadUser() {
 		User user =new User(name);
 		List<User> users =new ArrayList<>();
 		users.add(user);
 		atlasUsers.setUsers(users);
-		return atlasUsers;
 	}
 }

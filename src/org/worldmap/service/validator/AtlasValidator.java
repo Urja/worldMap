@@ -1,9 +1,8 @@
 package org.worldmap.service.validator;
 
 /**
- * 
+ * This class require for atlas data.
  * @author uramanan
- *  * This class require for atlas data but because of time constraint it is pending
  */
 public interface AtlasValidator {
 	/*TODO : validate format of atlas.xml

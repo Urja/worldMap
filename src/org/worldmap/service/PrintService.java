@@ -7,22 +7,20 @@ import org.worldmap.model.User;
 import java.util.List;
 
 /**
- * 
+ * Use service when any message needs to be print from application.
  * @author uramanan
- * Use service when any message needs to be print from application
  */
-// TODO format javadoc
 public interface PrintService {
 
-	// TODO method name consistency
-	// TODO remove ambiguity with "message"
-	// TODO add javadoc explaining the difference between print() and printMessage()
-
-	void printMessage(String message);
+	/** Get message from property file and print message using println method. **/
+	void printNewLineMessage(String key);
+	/** Get message from property file and print message using print method. **/
+	void printSingleLineMessage(String key);
 	void printUserDetail(User user, List<Country> countries);
-	void printSingleLineMessage(String message);
 	void printWorldMap(Atlas atlas);
-	void print(String message);
-	void printNewLine(String message);
+	/** Print string using print method. **/
+	void printSingleLine(String string);
+	/** Print string using println method. **/
+	void printNewLine(String string);
 	
 }

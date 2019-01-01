@@ -5,17 +5,18 @@
 * World map is a game about learning new words from different languages.
 * Game has its own map with predefined countries.
 * Each country has multiple cities.
-* To win the game player should win all the countries.
-* And to win country player should win cities available in that country.
-* Player can win the city by giving correct English translation of ask word.
-* World which will asked by game will be in the language of that particular country.
-* For example: You are in Germany, German is the language spoken in Germany.
-* So word could be "Danke" , now player should provide correct translation which is "Thanks".
-* If answer is correct then player won that city and 5 points will be added to player's experience point.
-* Now player can move to next city and so on.
-* When player provide all the correct answer for all the city then player win a particular country.
-* Then player will be in the next country with different language and different cities.
-* Once player win all the country, it will be now winner of the game.
+* To win the game, player should win all the countries.
+* And to win a country, player should win all the cities available in that country.
+* Player can win the city by giving a correct English translation
+for a given word of the native language of that country.
+* For example: If you are in Germany, German is the native language.
+* So a word could be "Danke". Now the player should provide a correct translation, which is "Thanks".
+* If the answer is correct then player has won that city and 5 points will be added to player's experience.
+* After winning one city, player can move to the next city of the same country.
+* When player provides all the correct answers for all the cities then player win that particular country.
+* After winning one country, player can move to the next county.
+* Each next country will bring a new set of cities and a new language to learn.
+* Once a player wins all the countries, player is now the winner of the game.
 
 ## Getting Started
 
@@ -28,13 +29,14 @@ What things you need to install the software and how to install them
 ```
 jdk 1.8
 maven
+git
 ```
 
 ### Installing
 
 To Install project follow the below steps:
 
-Open Command line and run the following to checkout the project.
+Open Command prompt and run the following command to checkout the project.
 
 ```
 git clone https://github.com/Urja/worldMap.git
@@ -50,27 +52,7 @@ Now build and run application by using following command
 mvn
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Built With
+# Built With# Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
 
@@ -79,14 +61,14 @@ Give an example
 
 * Validation of XML file like duplicate country or city will not allow.
 * XML tags validation
-* XML reading works on order number, so order number validation also could be done.
+* Order number validation also could be done, because XML reading works on order number
 * If user do not want answer the question or do not know the answer than skip question should be there.
+* User and Atlas data could be move to Json or database instead of xml file.
 
 ## Limitation
-* Non Latin characters are not allowed, therefore, Atlas.xml will not support words in Hindi or Arabic.
-* Used XML for data read and write because of library constraint. Json could be easy but it require a library.
+* Non Latin characters are not allowed on console, therefore,
+Atlas.xml will not support words in Hindi or Arabic.
 
 ## External Library
 * Maven - For application build.
 * Junit, Mockito, Powermock - For write test cases.
-* jacoco - For code coverage.

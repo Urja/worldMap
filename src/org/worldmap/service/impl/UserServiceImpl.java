@@ -16,9 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT;
+import static org.worldmap.util.WorldMapConstant.INVALID_CHARACTERS;
+
 public class UserServiceImpl implements UserService {
 
-	File file = new File(WorldMapConstant.USER_FILE);
+	private File file = new File(WorldMapConstant.USER_FILE);
 	PrintService printService = new PrintServiceImpl();
 
 	@Override
@@ -49,11 +52,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void writeUsers(AtlasUsers atlasUsers) throws UserException {
-		JAXBContext jaxbContext;
 		try {
-			jaxbContext = JAXBContext.newInstance(AtlasUsers.class);
-			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			Marshaller marshaller = JAXBContext.newInstance(AtlasUsers.class)
+					.createMarshaller();
+			marshaller.setProperty(JAXB_FORMATTED_OUTPUT, true);
 			marshaller.marshal(atlasUsers, file);
 		} catch (JAXBException e) {
 			throw new UserException("Write User :" + e.getLocalizedMessage());
@@ -62,12 +64,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Optional<User> getUser(String name) throws UserException {
-		if (name == null || name.isEmpty() || name.matches(WorldMapConstant.INVALID_CHARACTERS)) {
+		if (name == null || name.isEmpty() || name.matches(INVALID_CHARACTERS)) {
 			throw new UserException("Invalid User Name '" + name + "'");
 		}
 		AtlasUsers atlasUsers = readUsers();
 		if (atlasUsers != null) {
-			return atlasUsers.getUsers().stream().filter(x -> name.equals(x.getName())).findAny();
+			return atlasUsers.getUsers().stream()
+					.filter(user -> name.equals(user.getName()))
+					.findAny();
 		}
 		return Optional.empty();
 	}

@@ -13,24 +13,24 @@ import java.util.Properties;
 
 public class PrintServiceImpl implements PrintService{
 	
-	Properties properties = new Properties();
+	private Properties properties = new Properties();
 	
 	public PrintServiceImpl(){
 		try {
 			properties.load(new FileInputStream(WorldMapConstant.MESSAGE_PROPERTIES));
 		} catch (IOException e) {
-			print("Message property file not found.");
+			printSingleLine("Message property file not found.");
 		}
 	}
 
 	@Override
-	public void printMessage(String message) {
-		System.out.println(properties.getProperty(message));
+	public void printNewLineMessage(String key) {
+		System.out.println(properties.getProperty(key));
 	}
 	
 	@Override
-	public void printSingleLineMessage(String message) {
-		System.out.print(properties.getProperty(message));
+	public void printSingleLineMessage(String key) {
+		System.out.print(properties.getProperty(key));
 	}
 
 	@Override
@@ -38,8 +38,10 @@ public class PrintServiceImpl implements PrintService{
 		printNewLine("**************************");
 		printNewLine("Name: "+user.getName()+"\nExperience point: "+user.getExperiencePoint());
 		printNewLine("Conquered Countries:");
-		countries.stream().sorted().filter(c -> c.getOrder() <= user.getConqueredCountryOrder())
-		.forEach(country -> printNewLine(country.getName()));
+		countries.stream()
+				.sorted()
+				.filter(c -> c.getOrder() <= user.getConqueredCountryOrder())
+				.forEach(country -> printNewLine(country.getName()));
 		printNewLine("**************************");
 	}
 	
@@ -48,18 +50,18 @@ public class PrintServiceImpl implements PrintService{
 		printNewLine("You have to concurred all countries to win the world map.");
 		atlas.getCountries().forEach(country -> {
 			printNewLine("))"+country.getName()+"("+country.getLanguage()+") O");
-			country.getCities().forEach(city ->print("-->"+city.getName()));
+			country.getCities().forEach(city ->printSingleLine("-->"+city.getName()));
 		});
 	}
 	
 	@Override
-	public void print(String message) {
-		System.out.print(message);
+	public void printSingleLine(String string) {
+		System.out.print(string);
 	}
 
 	@Override
-	public void printNewLine(String message) {
-		System.out.println(message);
+	public void printNewLine(String string) {
+		System.out.println(string);
 		
 	}
 

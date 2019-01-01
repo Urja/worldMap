@@ -2,8 +2,7 @@ package org.worldmap.util;
 
 public class WorldMapConstant {
 	
-	private WorldMapConstant() {
-	}
+	private WorldMapConstant() {}
 	
 	public static final String USER_FILE = "users.xml";
 	public static final String ATLAS_FILE = "atlas.xml";

@@ -13,17 +13,13 @@ public class User {
 	private Integer conqueredCityOrder;
 	private Integer experiencePoint;
 	
-	public User() {
-		
-	}
+	public User() {}
 	
 	public User(String name){
-
 		this.name = name;
 		this.experiencePoint = 0;
 		this.conqueredCountryOrder = 0;
 		this.conqueredCityOrder =0;
-
 	}
 
 	public String getName() {
@@ -59,6 +55,6 @@ public class User {
 	}
 	
 	public void gainExperience() {
-		this.experiencePoint = experiencePoint+ WorldMapConstant.EXPERIENCE_INCREASED_BY;
+		this.experiencePoint = experiencePoint + WorldMapConstant.EXPERIENCE_INCREASED_BY;
 	}
 }

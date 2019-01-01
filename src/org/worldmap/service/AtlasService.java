@@ -4,8 +4,7 @@ import org.worldmap.exception.AtlasDataException;
 import org.worldmap.model.Atlas;
 
 /**
- * For Atlas related operations
- *
+ * For Atlas related operations.
  * @author uramanan
  */
 public interface AtlasService {

@@ -28,7 +28,7 @@ public class GameEngineServiceImpl implements GameEngineService {
                 .forEach(country -> {
                     playCountry(user, country);
                     if (totalCountries != country.getOrder())
-                        printService.printMessage("country.conquered.message");
+                        printService.printNewLineMessage("country.conquered.message");
                 });
         printService.printSingleLineMessage("game.won.message");
     }
@@ -37,28 +37,24 @@ public class GameEngineServiceImpl implements GameEngineService {
         printService.printNewLine("Now in: " + country.getName() + "(" + country.getLanguage() + ")");
         country.getCities().stream()
                 .sorted()
-                .filter(c -> c.getOrder() > user.getConqueredCityOrder())
+                .filter(city -> city.getOrder() > user.getConqueredCityOrder())
                 .forEach(city -> playCity(city, user));
         user.setConqueredCountryOrder(country.getOrder());
         user.setConqueredCityOrder(0);
         try {
             userService.updateUser(user);
         } catch (UserException e) {
-            printService.print(e.getMessage());
+            printService.printSingleLine(e.getMessage());
         }
     }
 
     /**
      * TODO : implement a way for user to skip playing this city (feature)
-     *
-     * @param city
-     * @param user
-     * @return
      */
-    private boolean playCity(City city, User user) {
+    private void playCity(City city, User user) {
 
         printService.printSingleLineMessage("question.text");
-        printService.print(city.getName() + ".\n" + city.getWord() + ": ");
+        printService.printSingleLine(city.getName() + ".\n" + city.getWord() + ": ");
         if (InputUtils.getUserInput().equalsIgnoreCase(city.getTranslation())) {
             printService.printNewLine(city.getSuccessMessage());
             user.setConqueredCityOrder(city.getOrder());
@@ -66,16 +62,13 @@ public class GameEngineServiceImpl implements GameEngineService {
             try {
                 userService.updateUser(user);
             } catch (UserException e) {
-                printService.print(e.getMessage());
+                printService.printSingleLine(e.getMessage());
             }
-            return true;
         } else {
-            printService.printMessage("wrong.translation.message");
+            printService.printNewLineMessage("wrong.translation.message");
             playCity(city, user);
         }
-        return false;
     }
-
     public void setUserService(UserService userService) {
         this.userService = userService;
     }

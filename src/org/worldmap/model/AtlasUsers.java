@@ -7,9 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * 
- * @author uramanan 
  * Separate Class created for only list because of Marshaller and UnMarshaller.
+ * @author uramanan
  */
 @XmlRootElement(name = "atlasusers")
 @XmlAccessorType(XmlAccessType.FIELD)

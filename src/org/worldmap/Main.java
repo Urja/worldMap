@@ -16,17 +16,17 @@ import org.worldmap.util.InputUtils;
 import java.util.Optional;
 
 public class Main {
-	static UserService userService = new UserServiceImpl();
+	private static UserService userService = new UserServiceImpl();
 	
 	public static void main(String[] args) {
 		AtlasService atlasService = new AtlasServiceImpl();
 		PrintService printService = new PrintServiceImpl();
 		GameEngineServiceImpl gameEngineService = new GameEngineServiceImpl(printService, userService);
-		printService.printMessage("welcome.message");
+		printService.printNewLineMessage("welcome.message");
 		
 		User user = askAndGetUser();
 		if(user == null) {
-			printService.printMessage("exit.message");
+			printService.printNewLineMessage("exit.message");
 			return;
 		}
 		try {
@@ -37,7 +37,7 @@ public class Main {
 			printService.printUserDetail(user, atlas.getCountries());
 			gameEngineService.startGame(user, atlas);
 		} catch (AtlasDataException e) {
-			printService.print(e.getMessage());
+			printService.printSingleLine(e.getMessage());
 		}
 	}
 

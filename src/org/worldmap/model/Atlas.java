@@ -7,10 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
- * 
- * @author uramanan
  * Use to pass atlas data through out the application.
  * Do not change order of country or city . If new city or country needs to be added than increase the order of the value
+ * @author uramanan
  */
 
 @XmlRootElement(name = "gameMap")

@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <gameMap>
-
 <!-- Germany -->
 <country>
 	<name>Germany </name>
@@ -42,8 +41,6 @@
 		<successMessage>MAMMA MIA!!! You won Frankfurt am, go and enjoy the famous Oprea house. </successMessage>
 	</city>
 </country>
-
-
 <!-- France -->
 <country>
 	<name>France </name>
@@ -85,9 +82,6 @@
 		<successMessage>yéééé..!! You won Toulouse, Relax along the River Garonne.</successMessage>
 	</city>
 </country>
-
-
-
 <!-- Spain  -->
 <country>
 	<name>Spain</name>

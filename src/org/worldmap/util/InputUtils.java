@@ -6,18 +6,14 @@ import org.worldmap.service.impl.PrintServiceImpl;
 import java.util.Scanner;
 
 /**
- * 
- * @author uramanan 
- * Util used when ever any input is required from User
+ * Util used when ever any input is required from User.
+ * @author uramanan
  */
 public class InputUtils {
-	// TODO all the fields in all javaclass, check the access level
-	static PrintService printService = new PrintServiceImpl();
-	static Scanner in = new Scanner(System.in);
+	private static PrintService printService = new PrintServiceImpl();
+	private static Scanner in = new Scanner(System.in);
 
-	private InputUtils() {
-		
-	}
+	private InputUtils() {}
 	public static String askUserName() {
 		printService.printSingleLineMessage("name.message");
 		return getUserInput();
@@ -31,7 +27,7 @@ public class InputUtils {
 		else if (response.equalsIgnoreCase("N") || response.equalsIgnoreCase("No"))
 			return false;
 		else {
-			printService.printMessage("invalid.input");
+			printService.printNewLineMessage("invalid.input");
 			return false;
 		}
 	}
