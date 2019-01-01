@@ -1,15 +1,15 @@
 package org.worldmap.service.impl;
 
+import org.worldmap.model.Atlas;
+import org.worldmap.model.Country;
+import org.worldmap.model.User;
+import org.worldmap.service.PrintService;
+import org.worldmap.util.WorldMapConstant;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
-
-import org.worldmap.model.Country;
-import org.worldmap.model.Atlas;
-import org.worldmap.model.User;
-import org.worldmap.service.PrintService;
-import org.worldmap.util.WorldMapConstant;
 
 public class PrintServiceImpl implements PrintService{
 	
@@ -21,11 +21,6 @@ public class PrintServiceImpl implements PrintService{
 		} catch (IOException e) {
 			print("Message property file not found.");
 		}
-	}
-	
-	@Override
-	public void printCountryConcouredMessage(String countryName) {
-		printMessage(properties.getProperty("country.conquered.message")+countryName);
 	}
 
 	@Override

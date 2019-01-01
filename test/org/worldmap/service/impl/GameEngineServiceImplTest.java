@@ -1,31 +1,48 @@
 package org.worldmap.service.impl;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.worldmap.model.*;
+import org.worldmap.service.GameEngineService;
+import org.worldmap.service.PrintService;
+import org.worldmap.service.UserService;
+import org.worldmap.util.InputUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.worldmap.model.Atlas;
-import org.worldmap.model.City;
-import org.worldmap.model.Country;
-import org.worldmap.model.User;
-import org.worldmap.service.GameEngineService;
-import org.worldmap.service.impl.GameEngineServiceImpl;
+import static org.junit.Assert.assertTrue;
 
-@RunWith(MockitoJUnitRunner.class)
+@PrepareForTest({GameEngineServiceImplTest.class, InputUtils.class,UserServiceImpl.class})
+@RunWith(PowerMockRunner.class)
 public class GameEngineServiceImplTest {
 
-	GameEngineService gameEngineService = new GameEngineServiceImpl();
-	User user =new User("test-User");
+	private UserService userService = PowerMockito.spy(new UserServiceImpl());
+	private PrintService printService = PowerMockito.spy(new PrintServiceImpl());
+	GameEngineService gameEngineService = new GameEngineServiceImpl(printService, userService);
+	User user =new User("testUser");
 	Atlas atlas =new Atlas();
-	
+	AtlasUsers atlasUsers = new AtlasUsers();
+
+
 	@Before
 	public void testSetup(){
-		loadAtlasTestData();
+		try {
+			loadAtlasTestData();
+			testReadUser();
+			PowerMockito.mockStatic(InputUtils.class);
+			PowerMockito.when(InputUtils.getUserInput()).thenReturn("testTranslation");
+			PowerMockito.when(userService,"readUsers").thenReturn(atlasUsers);
+			PowerMockito.doNothing().when(userService,"updateUser",Mockito.any());
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
 	}
 
 	@Test
@@ -44,7 +61,7 @@ public class GameEngineServiceImplTest {
 		List<City> cities = new ArrayList<>();
 		cities.add(city);
 		Country country =new Country();
-		country.setName("testCountr");
+		country.setName("testCountry");
 		country.setOrder(1);
 		country.setLanguage("testLanguage");
 		country.setCities(cities);
@@ -53,5 +70,10 @@ public class GameEngineServiceImplTest {
 		atlas.setCountries(countries);
 		
 	}
-
+	private AtlasUsers testReadUser() {
+		List<User> users =new ArrayList<>();
+		users.add(user);
+		atlasUsers.setUsers(users);
+		return atlasUsers;
+	}
 }

@@ -9,5 +9,5 @@ import org.worldmap.model.User;
  * Core game functions are handle by Game Engine by playCountry and playCity methods
  */
 public interface GameEngineService {
-	public void startGame(User user, Atlas atlas);
+	void startGame(User user, Atlas atlas);
 }

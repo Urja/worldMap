@@ -4,9 +4,9 @@ import org.worldmap.exception.AtlasDataException;
 import org.worldmap.model.Atlas;
 
 /**
- * 
- * @author uramanan
  * For Atlas related operations
+ *
+ * @author uramanan
  */
 public interface AtlasService {
 	Atlas loadAtlas() throws AtlasDataException;

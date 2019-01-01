@@ -1,20 +1,21 @@
 
 # World Map
 ![alt text](https://github.com/Urja/worldMap/blob/master/resources/map.jpg)
-World map is a game about learning new words from different languages.
-Game has its own map with predefined countries.
-Each country has multiple cities.
-To win the game player should win all the countries.
-And to win country player should win cities available in that country.
-Player can win the city by giving correct English translation of ask word.
-World which will asked by game will be in the language of that particular country.
-For example: You are in Germany, German is the language spoken in Germany.
-So word could be "Danke" , now player should provide correct translation which is "Thanks".
-If answer is correct then player won that city and 5 points will be added to player's experience point.
-Now player can move to next city and so on.
-When player provide all the correct answer for all the city then player win a particular country.
-Then player will be in the next country with different language and different cities.
-Once player win all the country, it will be now winner of the game. 
+
+* World map is a game about learning new words from different languages.
+* Game has its own map with predefined countries.
+* Each country has multiple cities.
+* To win the game player should win all the countries.
+* And to win country player should win cities available in that country.
+* Player can win the city by giving correct English translation of ask word.
+* World which will asked by game will be in the language of that particular country.
+* For example: You are in Germany, German is the language spoken in Germany.
+* So word could be "Danke" , now player should provide correct translation which is "Thanks".
+* If answer is correct then player won that city and 5 points will be added to player's experience point.
+* Now player can move to next city and so on.
+* When player provide all the correct answer for all the city then player win a particular country.
+* Then player will be in the next country with different language and different cities.
+* Once player win all the country, it will be now winner of the game.
 
 ## Getting Started
 

@@ -1,10 +1,9 @@
 package org.worldmap.service;
 
-import java.util.Optional;
-
 import org.worldmap.exception.UserException;
-import org.worldmap.model.AtlasUsers;
 import org.worldmap.model.User;
+
+import java.util.Optional;
 
 /**
  * 

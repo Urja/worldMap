@@ -1,21 +1,20 @@
 package org.worldmap.service.impl;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-
 import org.worldmap.exception.UserException;
 import org.worldmap.model.AtlasUsers;
 import org.worldmap.model.User;
 import org.worldmap.service.PrintService;
 import org.worldmap.service.UserService;
 import org.worldmap.util.WorldMapConstant;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
 
@@ -38,6 +37,7 @@ public class UserServiceImpl implements UserService {
 	private AtlasUsers readUsers() throws UserException {
 		if (file.length() == 0) {
 			return null;
+			// TODO throw exception
 		}
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(AtlasUsers.class);

@@ -1,9 +1,9 @@
 package org.worldmap.util;
 
-import java.util.Scanner;
-
 import org.worldmap.service.PrintService;
 import org.worldmap.service.impl.PrintServiceImpl;
+
+import java.util.Scanner;
 
 /**
  * 
@@ -11,7 +11,7 @@ import org.worldmap.service.impl.PrintServiceImpl;
  * Util used when ever any input is required from User
  */
 public class InputUtils {
-	
+	// TODO all the fields in all javaclass, check the access level
 	static PrintService printService = new PrintServiceImpl();
 	static Scanner in = new Scanner(System.in);
 

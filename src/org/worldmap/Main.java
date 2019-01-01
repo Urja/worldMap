@@ -1,7 +1,5 @@
 package org.worldmap;
 
-import java.util.Optional;
-
 import org.worldmap.exception.AtlasDataException;
 import org.worldmap.exception.UserException;
 import org.worldmap.model.Atlas;
@@ -15,13 +13,15 @@ import org.worldmap.service.impl.PrintServiceImpl;
 import org.worldmap.service.impl.UserServiceImpl;
 import org.worldmap.util.InputUtils;
 
+import java.util.Optional;
+
 public class Main {
 	static UserService userService = new UserServiceImpl();
 	
 	public static void main(String[] args) {
 		AtlasService atlasService = new AtlasServiceImpl();
 		PrintService printService = new PrintServiceImpl();
-		GameEngineServiceImpl gameEngineService = new GameEngineServiceImpl();
+		GameEngineServiceImpl gameEngineService = new GameEngineServiceImpl(printService, userService);
 		printService.printMessage("welcome.message");
 		
 		User user = askAndGetUser();

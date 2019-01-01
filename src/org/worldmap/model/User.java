@@ -1,8 +1,8 @@
 package org.worldmap.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.worldmap.util.WorldMapConstant;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @XmlRootElement(name = "user")
