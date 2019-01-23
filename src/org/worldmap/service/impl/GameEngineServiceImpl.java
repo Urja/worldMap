@@ -52,24 +52,26 @@ public class GameEngineServiceImpl implements GameEngineService {
      * TODO : implement a way for user to skip playing this city (feature)
      */
     private void playCity(City city, User user) {
-
-        printService.printSingleLineMessage("question.text");
-        printService.printSingleLine(city.getName() + ".\n" + city.getWord() + ": ");
-        if (InputUtils.getUserInput().equalsIgnoreCase(city.getTranslation())) {
-            printService.printNewLine(city.getSuccessMessage());
-            user.setConqueredCityOrder(city.getOrder());
-            user.gainExperience();
-            try {
-                userService.updateUser(user);
-            } catch (UserException e) {
-                printService.printSingleLine(e.getMessage());
-            }
-        } else {
-            printService.printNewLineMessage("wrong.translation.message");
-            playCity(city, user);
+    	while(!getAnswer(city)) {
+    		 printService.printNewLineMessage("wrong.translation.message");
+    	}
+        printService.printNewLine(city.getSuccessMessage());
+        user.setConqueredCityOrder(city.getOrder());
+        user.gainExperience();
+        try {
+            userService.updateUser(user);
+        } catch (UserException e) {
+            printService.printSingleLine(e.getMessage());
         }
+       
     }
-    public void setUserService(UserService userService) {
+    private boolean getAnswer(City city) {
+    	printService.printSingleLineMessage("question.text");
+        printService.printSingleLine(city.getName() + ".\n" + city.getWord() + ": ");
+        return InputUtils.getUserInput().equalsIgnoreCase(city.getTranslation());
+	}
+
+	public void setUserService(UserService userService) {
         this.userService = userService;
     }
 }

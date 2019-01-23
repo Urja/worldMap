@@ -6,6 +6,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.worldmap.exception.AtlasDataException;
 import org.worldmap.service.AtlasService;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -15,7 +16,7 @@ public class AtlasServiceImplTest {
 	@Test
 	public void testLoadAtlas(){
 		try {
-			assert(atlasService.loadAtlas()!=null);
+			assertNotNull(atlasService.loadAtlas());
 		} catch (AtlasDataException e) {
 			fail();
 		}
